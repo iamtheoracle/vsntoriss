@@ -1,0 +1,38 @@
+{
+  "url": "http://127.0.0.1:8081/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "Ashcombe · Vantoris",
+      "hasCanvas": false,
+      "bodyTextLen": 553,
+      "bodyTextHash": "c4e6e9ed2bfa15a74a83183206e3b39f79333c7bab20b4d7727c04aab60b7955",
+      "bodyTextPrefix": "CONNECTED PLATFORM Sign in INSTITUTION ONE Ashcombe Private Bank",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-built.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "Ashcombe · Vantoris",
+      "hasCanvas": false,
+      "bodyTextLen": 553,
+      "bodyTextHash": "c4e6e9ed2bfa15a74a83183206e3b39f79333c7bab20b4d7727c04aab60b7955",
+      "bodyTextPrefix": "CONNECTED PLATFORM Sign in INSTITUTION ONE Ashcombe Private Bank",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-built-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/app-builder-built.json",
+  "divergesFromBaseline": false,
+  "baselineReasons": []
+}

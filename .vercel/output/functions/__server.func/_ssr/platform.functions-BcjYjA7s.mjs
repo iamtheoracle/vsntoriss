@@ -1,0 +1,32 @@
+import { r as createServerFn } from "./ssr.mjs";
+import { t as sessionMiddleware } from "./session.middleware-DE4ULBFa.mjs";
+import { t as createSsrRpc } from "./createSsrRpc-B2Izd0c7.mjs";
+//#region node_modules/.nitro/vite/services/ssr/assets/platform.functions-BcjYjA7s.js
+var getAccess = createServerFn({ method: "GET" }).middleware([sessionMiddleware]).handler(createSsrRpc("f86c3931e8593a08712d2a779abbbceebac3484fc39916930217fcf9970c0bf2"));
+var bootstrapExecutive = createServerFn({ method: "POST" }).validator((input) => input).middleware([sessionMiddleware]).handler(createSsrRpc("054bac981e791b7ca4010f4a24281975cae122d1ac0a6702131e57e59d0cb30b"));
+var requestProfile = createServerFn({ method: "POST" }).validator((input) => input).middleware([sessionMiddleware]).handler(createSsrRpc("ab252b472eb385f1337396e87623e5ce98ae5d1bfe31727d425f4f3abb8e9b24"));
+var decideProfile = createServerFn({ method: "POST" }).validator((input) => input).middleware([sessionMiddleware]).handler(createSsrRpc("2d4c4d1270a0c0ac1bbc428f96b53cb78a5de4716c51928b198c8ba50b4c8f6e"));
+var submitEnquiry = createServerFn({ method: "POST" }).validator((input) => input).handler(createSsrRpc("29481e74710cce9c171ad39a2f63415addbff059d0aaae2c504be8232c57b62c"));
+var issueKycLink = createServerFn({ method: "POST" }).validator((input) => input).middleware([sessionMiddleware]).handler(createSsrRpc("aa248e39f3b473b2d099f41bfb1b521f03fb0f50fa3edd81b358922234084a87"));
+var readKycInvite = createServerFn({ method: "GET" }).validator((token) => token).handler(createSsrRpc("2677bcc2d1b1ef4d80dea74004ac0e3ec78826305819730a74df86c85023746d"));
+var submitKyc = createServerFn({ method: "POST" }).validator((input) => input).handler(createSsrRpc("748fe7038a9bd19d08aa79d7ef9f5f765b55397f63ac45bcbe0e2a28f09d4acc"));
+var ashcombeClientHome = createServerFn({ method: "GET" }).middleware([sessionMiddleware]).handler(createSsrRpc("e83bcebab27da44814ceec05d66f7ec479ecb4234cae077f2101c656fd7d01be"));
+var createPayment = createServerFn({ method: "POST" }).validator((input) => input).middleware([sessionMiddleware]).handler(createSsrRpc("8f757495d952567818fe92119202fe7736f589cd21b9baba3cc5ba363ab0f228"));
+var postMessage = createServerFn({ method: "POST" }).validator((input) => input).middleware([sessionMiddleware]).handler(createSsrRpc("7a7b7b39133ea2bb4c82bbaea65f39f384764eb66cd1809077f949ca73d78b4e"));
+var ashcombeOffice = createServerFn({ method: "GET" }).middleware([sessionMiddleware]).handler(createSsrRpc("1802222336cec20af66fc5863f1c571ec5fa71eacaa7f784472c964846d41b39"));
+var proposeAccount = createServerFn({ method: "POST" }).validator((input) => input).middleware([sessionMiddleware]).handler(createSsrRpc("f6767aadd66ad960fc59bf102230f3d0984927b8a2ee8eec27a0c62e4a5f39da"));
+var approveAccount = createServerFn({ method: "POST" }).validator((input) => input).middleware([sessionMiddleware]).handler(createSsrRpc("64a53834ad83af0b44e78b4e6aa880de1b4e7247f35665a551aa4a9ec4cbff4c"));
+var proposeIban = createServerFn({ method: "POST" }).validator((input) => input).middleware([sessionMiddleware]).handler(createSsrRpc("d849230b6dded7888ff3587630350cd5edace80a727a3928827a2cfe1e782bd3"));
+var confirmIban = createServerFn({ method: "POST" }).validator((input) => input).middleware([sessionMiddleware]).handler(createSsrRpc("353177414a4b5dd00df42dae098efa1abe1bcd967f8aac66ff5000c5e8ab211f"));
+var recordBranchReceipt = createServerFn({ method: "POST" }).validator((input) => input).middleware([sessionMiddleware]).handler(createSsrRpc("58a68314c5e62712fcad4947684a23de2594932c3b397fc7b467dbb4f41697da"));
+var checkBranchReceipt = createServerFn({ method: "POST" }).validator((input) => input).middleware([sessionMiddleware]).handler(createSsrRpc("4461fc6c1747748529efe116528bd35879e368eb02a7ac710c249a2b5493f009"));
+var advancePayment = createServerFn({ method: "POST" }).validator((input) => input).middleware([sessionMiddleware]).handler(createSsrRpc("b0e8d15688d1804dd8df69048e01bb01e6359773871543c4d5770fffd3710191"));
+var fileObligation = createServerFn({ method: "POST" }).validator((input) => input).middleware([sessionMiddleware]).handler(createSsrRpc("fbd039f57c95fd4db478643cfbccb212ac112b029b95079619d39f144e843c70"));
+var approveObligation = createServerFn({ method: "POST" }).validator((input) => input).middleware([sessionMiddleware]).handler(createSsrRpc("4267a96508a64ce51c73d5ab02f7e48e08238c379525f5c47ae8e757b18bc937"));
+var vantorisHome = createServerFn({ method: "GET" }).middleware([sessionMiddleware]).handler(createSsrRpc("ed0497c182003cd17f6ad84b12683868ec2d4bc179f0472c17f21ef6deb3f8df"));
+var createVantorisRequest = createServerFn({ method: "POST" }).validator((input) => input).middleware([sessionMiddleware]).handler(createSsrRpc("0e605b764f94c1e6a89cfa944e31a9c1bb89fc357302197bdd94c90306b0e2cc"));
+var vantorisOffice = createServerFn({ method: "GET" }).middleware([sessionMiddleware]).handler(createSsrRpc("50e1b4f8f754cb30eecf72419875e07fe8ba2aaeefaa563d190b27ee16042d95"));
+var addVantorisRisk = createServerFn({ method: "POST" }).validator((input) => input).middleware([sessionMiddleware]).handler(createSsrRpc("76ae67e587f22a2a955f3cf87da1abea034a7e1024aa4bd8ba4d54a168b0050f"));
+var setRequestStatus = createServerFn({ method: "POST" }).validator((input) => input).middleware([sessionMiddleware]).handler(createSsrRpc("286f5436d386dfd9c5875dfeacc24e86448c1626e2816f4e582fdb1fe2adc3ee"));
+//#endregion
+export { submitEnquiry as C, vantorisOffice as E, setRequestStatus as S, vantorisHome as T, proposeAccount as _, ashcombeClientHome as a, recordBranchReceipt as b, checkBranchReceipt as c, createVantorisRequest as d, decideProfile as f, postMessage as g, issueKycLink as h, approveObligation as i, confirmIban as l, getAccess as m, advancePayment as n, ashcombeOffice as o, fileObligation as p, approveAccount as r, bootstrapExecutive as s, addVantorisRisk as t, createPayment as u, proposeIban as v, submitKyc as w, requestProfile as x, readKycInvite as y };

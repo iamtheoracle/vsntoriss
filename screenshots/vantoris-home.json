@@ -1,0 +1,36 @@
+{
+  "url": "http://127.0.0.1:8080/vantoris",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "Ashcombe · Vantoris",
+      "hasCanvas": false,
+      "bodyTextLen": 788,
+      "bodyTextHash": "3377a76d62157d732e7083611750ca153d91ad6966547f45f9eaca2c7ba5b6b5",
+      "bodyTextPrefix": "Vantoris Enquire Portal Office Disclosures VANTORIS PRIVATE INST",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/vantoris-home.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "Ashcombe · Vantoris",
+      "hasCanvas": false,
+      "bodyTextLen": 788,
+      "bodyTextHash": "3377a76d62157d732e7083611750ca153d91ad6966547f45f9eaca2c7ba5b6b5",
+      "bodyTextPrefix": "Vantoris Enquire Portal Office Disclosures VANTORIS PRIVATE INST",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/vantoris-home-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/vantoris-home.json"
+}

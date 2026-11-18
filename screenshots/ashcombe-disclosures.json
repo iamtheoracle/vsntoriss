@@ -1,0 +1,36 @@
+{
+  "url": "http://127.0.0.1:8080/ashcombe/disclosures",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "Ashcombe · Vantoris",
+      "hasCanvas": false,
+      "bodyTextLen": 1389,
+      "bodyTextHash": "71f945894ad7b9c2d71945bedab0effae026656769038397b1c723b8376866c9",
+      "bodyTextPrefix": "Ashcombe Ashcombe Enquire Banking Office Disclosures Vantoris Ac",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/ashcombe-disclosures.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "Ashcombe · Vantoris",
+      "hasCanvas": false,
+      "bodyTextLen": 1329,
+      "bodyTextHash": "5e10e1e4c7704e7e0c9de9af0ece1e7d67f192e88181d504a011879e85b8d296",
+      "bodyTextPrefix": "Ashcombe ASHCOMBE PRIVATE BANK Disclosures Ashcombe is being est",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/ashcombe-disclosures-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/ashcombe-disclosures.json"
+}

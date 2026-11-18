@@ -1,0 +1,33 @@
+import { r as createServerFn } from "./ssr.mjs";
+import { t as sessionMiddleware } from "./session.middleware-DE4ULBFa.mjs";
+import { t as createSsrRpc } from "./createSsrRpc-B2Izd0c7.mjs";
+//#region node_modules/.nitro/vite/services/ssr/assets/registers.functions-BnTeEUd_.js
+var publicPublications = createServerFn({ method: "GET" }).validator((institution) => institution).handler(createSsrRpc("d7284332a5b5acec8b8d4202168b714ff8a1c3ba33e0173406c633edf10fbed0"));
+var clientDesk = createServerFn({ method: "GET" }).middleware([sessionMiddleware]).handler(createSsrRpc("366819b2fd01b91bac10789a89318645ade4ec905155985859b64143157b8fe2"));
+var requestCard = createServerFn({ method: "POST" }).validator((input) => input).middleware([sessionMiddleware]).handler(createSsrRpc("571cbae0cd746e6444e3a7dcc0f74a60d9d0d07f4adf952e2d33bdff0a0ae8a6"));
+var decideCard = createServerFn({ method: "POST" }).validator((input) => input).middleware([sessionMiddleware]).handler(createSsrRpc("3124738d1abdde26cbeedb6ec83e2c646395b032c8a6f53c89c90c4f3edafe33"));
+var issueStatement = createServerFn({ method: "POST" }).validator((input) => input).middleware([sessionMiddleware]).handler(createSsrRpc("0347fa9ff1c3b7f8b84f581a595462e06002d2060315aedc641a1c076b51855b"));
+var fileComplaint = createServerFn({ method: "POST" }).validator((input) => input).middleware([sessionMiddleware]).handler(createSsrRpc("8fbc8c7e36e6efefd89d11988cdd56753f1473b11e4a638a71c4eaaca27befac"));
+var closeComplaint = createServerFn({ method: "POST" }).validator((input) => input).middleware([sessionMiddleware]).handler(createSsrRpc("59d78fcbb373e0e7c4fdc22a6ea916c841ca7cdfb03aa6b995d53b6271439982"));
+var revokeSession = createServerFn({ method: "POST" }).validator((input) => input).middleware([sessionMiddleware]).handler(createSsrRpc("ca9ad2f09d5a6489278b9bcd39ab4534fc6f5f239dc5520e457811a0a0c760d1"));
+var ashcombeRegisters = createServerFn({ method: "GET" }).middleware([sessionMiddleware]).handler(createSsrRpc("69315addcd3ebacebab9dd2a6f8fb60e8df7b0fa6cc7efa379c7187b362b6b89"));
+var appointOfficer = createServerFn({ method: "POST" }).validator((input) => input).middleware([sessionMiddleware]).handler(createSsrRpc("13f7e6559a71414039ecb4d9a7fa7f50be27743a5fe87fc980b85e14e6a0a825"));
+var proposeLimit = createServerFn({ method: "POST" }).validator((input) => input).middleware([sessionMiddleware]).handler(createSsrRpc("adfdc3907547ba7ac814dfd72bc6b7c3f7a5d83d8b4c1b726499f3afa2bf0cd2"));
+var approveLimit = createServerFn({ method: "POST" }).validator((input) => input).middleware([sessionMiddleware]).handler(createSsrRpc("35969a2a116e2adfd29d63d3207923e541987190ab6a734efea9f8b7cefd5b00"));
+var fileDocument = createServerFn({ method: "POST" }).validator((input) => input).middleware([sessionMiddleware]).handler(createSsrRpc("ef9d5e6144bd9315c1de99293beea3c76d654c9f75d949fc0ca5b28cf93c8243"));
+var addRisk = createServerFn({ method: "POST" }).validator((input) => input).middleware([sessionMiddleware]).handler(createSsrRpc("b5e4379d7e1636dfa287ffc0ec914bfeba57b3bdcbd2d3a67bc6082df82f9fd6"));
+var reportIncident = createServerFn({ method: "POST" }).validator((input) => input).middleware([sessionMiddleware]).handler(createSsrRpc("42bb3b6549b630a724d8e494d2d72feb630a42ba49f10c881b7e488931d256db"));
+var closeIncident = createServerFn({ method: "POST" }).validator((input) => input).middleware([sessionMiddleware]).handler(createSsrRpc("51c079908985ccc4974e82e5f2d3d567a1ccc9e9677a66c2c2fbaca526d04e24"));
+var draftPolicy = createServerFn({ method: "POST" }).validator((input) => input).middleware([sessionMiddleware]).handler(createSsrRpc("1a6effab89043cb0b19fdcf41aaefa54821fd0b61ee98048c5f46e92bd546a30"));
+var adoptPolicy = createServerFn({ method: "POST" }).validator((input) => input).middleware([sessionMiddleware]).handler(createSsrRpc("2d94fefaac0685d97973855fc204d06d243c3aa63aec704eede308f119bc5b99"));
+var draftPublication = createServerFn({ method: "POST" }).validator((input) => input).middleware([sessionMiddleware]).handler(createSsrRpc("ee1ebd303068e0af3c9fd90ab34387d351dce02cc5e4a30c7a2e4f8ddd7184a6"));
+var publishWork = createServerFn({ method: "POST" }).validator((input) => input).middleware([sessionMiddleware]).handler(createSsrRpc("bd45861c3379fc2c94b81dd73c76e3afd44c1a9d4be8f1cfcf646bf1507eb298"));
+var addDepartment = createServerFn({ method: "POST" }).validator((input) => input).middleware([sessionMiddleware]).handler(createSsrRpc("02dad93c3919bd627c8c812726b281ff618ffbcd2d4e07aa4abaa12e07d6c6b1"));
+var proposeDelegation = createServerFn({ method: "POST" }).validator((input) => input).middleware([sessionMiddleware]).handler(createSsrRpc("03bf0ab2320a7e69d1d506cec1726aacd912ff6c3389935ddea8d5b12e383010"));
+var confirmDelegation = createServerFn({ method: "POST" }).validator((input) => input).middleware([sessionMiddleware]).handler(createSsrRpc("a67d85a3465ef66a0f9e7691bd095e50e7d41e3c667782906d07e52687ba0a25"));
+var fileVantorisObligation = createServerFn({ method: "POST" }).validator((input) => input).middleware([sessionMiddleware]).handler(createSsrRpc("b7c6b9f9bf3c7cd5dbec0ef20edcd593b0f8e048c7b6b6f837ef41a47015c0b3"));
+var approveVantorisObligation = createServerFn({ method: "POST" }).validator((input) => input).middleware([sessionMiddleware]).handler(createSsrRpc("9f970206d4074d11c0882a692d45683bf4344d2f1d8c798e3e8115582982e35e"));
+var vantorisRegisters = createServerFn({ method: "GET" }).middleware([sessionMiddleware]).handler(createSsrRpc("52935a516a0b667f8ca0caf6827af9fe321018a29d5d894f4e9c19b393ef9c29"));
+var memberDesk = createServerFn({ method: "GET" }).middleware([sessionMiddleware]).handler(createSsrRpc("2d5e2b92b0d56c0729440b4f21a42566514f665bd74aff1a9594781819edc781"));
+//#endregion
+export { publishWork as C, vantorisRegisters as D, revokeSession as E, publicPublications as S, requestCard as T, fileVantorisObligation as _, approveLimit as a, proposeDelegation as b, clientDesk as c, confirmDelegation as d, decideCard as f, fileDocument as g, fileComplaint as h, appointOfficer as i, closeComplaint as l, draftPublication as m, addRisk as n, approveVantorisObligation as o, draftPolicy as p, adoptPolicy as r, ashcombeRegisters as s, addDepartment as t, closeIncident as u, issueStatement as v, reportIncident as w, proposeLimit as x, memberDesk as y };

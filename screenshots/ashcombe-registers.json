@@ -1,0 +1,36 @@
+{
+  "url": "http://127.0.0.1:8080/ashcombe/registers",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "Ashcombe · Vantoris",
+      "hasCanvas": false,
+      "bodyTextLen": 180,
+      "bodyTextHash": "3ea0ed250f09b831c2bf83f9d704c6f94de26585966238fc0ca8dd1a26ead0ce",
+      "bodyTextPrefix": "PLATFORM ACCESS Sign in One identity. Authority is granted insid",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/ashcombe-registers.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "Ashcombe · Vantoris",
+      "hasCanvas": false,
+      "bodyTextLen": 180,
+      "bodyTextHash": "3ea0ed250f09b831c2bf83f9d704c6f94de26585966238fc0ca8dd1a26ead0ce",
+      "bodyTextPrefix": "PLATFORM ACCESS Sign in One identity. Authority is granted insid",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/ashcombe-registers-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/ashcombe-registers.json"
+}

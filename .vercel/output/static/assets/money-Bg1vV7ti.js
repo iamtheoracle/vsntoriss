@@ -1,0 +1,1 @@
+function e(e,t){return new Intl.NumberFormat(`en-GB`,{style:`currency`,currency:t}).format(e/100)}export{e as t};

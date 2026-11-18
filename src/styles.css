@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #1c1915;
+  --color-ink-soft: #2a2620;
+  --color-ink-muted: #6e675c;
+  --color-paper: #f7f4ef;
+  --color-paper-warm: #f4efe6;
+  --color-paper-soft: #ede8df;
+  --color-forest: #2c4a3e;
+  --color-forest-deep: #1f352c;
+  --color-forest-soft: #3f6b52;
+  --color-charcoal: #6e675c;
+  --color-amber: #8a5a22;
+  --color-stone: #a89f8f;
+  --color-line: #e0dcd4;
+  --color-line-strong: #c9c3b8;
+  --color-navy: #071c38;
+  --color-navy-deep: #041226;
+  --color-brass: #c9a227;
+  --color-ivory: #f6f1e7;
+  --color-slate: #9aa6b8;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-serif: "Libre Baskerville", Georgia, serif;
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --radius-sm: 0.125rem;
+}
+
+@layer base {
+  html { background: var(--color-paper); color: var(--color-ink); }
+  body {
+    font-family: var(--font-sans);
+    background: var(--color-paper);
+    color: var(--color-ink);
+    min-height: 100vh;
+  }
+  button:not(:disabled),
+  [role="button"]:not(:disabled) { cursor: pointer; }
+}
+
+@utility field {
+  margin-top: 0.5rem;
+  width: 100%;
+  border: 1px solid var(--color-line-strong);
+  background: transparent;
+  padding: 0.75rem;
+  font-size: 0.875rem;
+  outline: none;
+}

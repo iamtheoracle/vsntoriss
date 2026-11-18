@@ -1,0 +1,402 @@
+From 7d71f59f17f56531467504980c3c8e38bd7a4c51 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?D=E2=80=99Oracle?=
+ <297944724+iamtheoracle@users.noreply.github.com>
+Date: Wed, 18 Nov 2026 01:42:47 +0000
+Subject: [PATCH] Separate the recovered member application as Vantoris X
+ Money.
+
+The complete tree stays based on migration/remove-base44-and-codex at 11ec54f. This branch corrects only the product identity. Ashcombe, Vantoris Private Institution, and AVCU are not this application. Heritage pages stay editorial and are not ledger records. Migration filenames and checksums are unchanged.
+---
+ README.md                                     |  9 ++--
+ docs/INSTITUTION_SEPARATION.md                | 30 ++++++++++++
+ docs/SOURCE_IDENTITY_BOUNDARY.md              |  4 ++
+ index.html                                    |  6 +--
+ package.json                                  |  5 +-
+ src/components/vantoris/HambrosTribute.jsx    |  2 +-
+ src/components/vantoris/MemberSidebar.jsx     |  4 +-
+ .../vantoris/brand/VantorisLogo.jsx           |  4 +-
+ src/pages/BrandIdentity.jsx                   |  4 +-
+ src/pages/Discover.jsx                        |  2 +-
+ src/pages/DiscoverFlights.jsx                 |  2 +-
+ src/pages/DiscoverHousing.jsx                 |  2 +-
+ src/pages/Landing.jsx                         |  8 ++--
+ src/pages/admin/AdminMembers.jsx              |  2 +-
+ tests/institution-separation.test.mjs         | 48 +++++++++++++++++++
+ tests/operational-truthfulness.test.ts        | 17 ++++---
+ 16 files changed, 119 insertions(+), 30 deletions(-)
+ create mode 100644 docs/INSTITUTION_SEPARATION.md
+ create mode 100644 tests/institution-separation.test.mjs
+
+diff --git a/README.md b/README.md
+index 526b9df..d4e34e8 100644
+--- a/README.md
++++ b/README.md
+@@ -1,10 +1,13 @@
+-# Vantoris Private Institution
++# Vantoris X Money
+ 
+-Vantoris is the institution. This repository contains its member-facing application and restricted staff workspace. The application is not the institution's source of truth.
++This branch is the recovered member application for **Vantoris X Money** only. It is not Ashcombe Private Bank, not Vantoris Private Institution, and not American Vanguard Credit Union.
++
++The private-institution label on `migration/remove-base44-and-codex` at `11ec54f9067db3e8c24bf4b026daf2062a7d5978` is preserved and was not rewritten. This branch starts from that complete tree and corrects the product identity. Heritage pages, including the Hambros tribute and founder stories, are editorial. They are not client records, not a ledger, and not evidence of affiliation.
+ 
+ ## Institutional authority
+ 
+-- Vantoris administers its own PostgreSQL database and the `vantoris_ledger` schema.
++- X Money administers its own PostgreSQL database and the existing `vantoris_ledger` schema. The schema name is historical and is not a shared ledger with any other institution.
++- Ashcombe, Vantoris Private Institution, AVCU, and Group Headquarters have no authority in this application.
+ - Vantoris journals are the only source of member posted balances and holds.
+ - Member balances are liabilities of Vantoris; permanent institutional capital is separately recorded and protected.
+ - Internal member transfers are Vantoris-to-Vantoris ledger operations. No sponsor bank, Plaid, ACH, Fedwire, card processor, Base44 or assistant is in that path.
+diff --git a/docs/INSTITUTION_SEPARATION.md b/docs/INSTITUTION_SEPARATION.md
+new file mode 100644
+index 0000000..fa55425
+--- /dev/null
++++ b/docs/INSTITUTION_SEPARATION.md
+@@ -0,0 +1,30 @@
++# Institution separation — Vantoris X Money source
++
++Recovery date: 18 November 2026.
++
++## What was recovered
++
++The complete runnable member application was not on `main` (`792cfa32`, 22 files). It is on `migration/remove-base44-and-codex` at `11ec54f9067db3e8c24bf4b026daf2062a7d5978` (431 files): member and staff sign-in, TOTP, PostgreSQL migrations `000`–`024`, internal transfers, and the member interface.
++
++`recovery/merge-vantoris-live` at `d0a68dd` is the same member application minus that independent runtime, still tied to Base44, and mixed with AVCU-labelled tests. It was not merged.
++
++## How the institutions are separated
++
++| Institution | Where it stays | What this branch does |
++|---|---|---|
++| Vantoris X Money | This branch, `work/xmoney-separated-source` | Product name, package, and visible brand |
++| Vantoris Private Institution | Unchanged branch `migration/remove-base44-and-codex` | Not relabelled in place |
++| AVCU | Its own repositories (`avcu`, `avcreditunion`, `American-Vanguard-credit-union`) | `avcu_*` migration filenames kept for checksum history only |
++| Ashcombe Private Bank | `iamtheoracle/ashcombe-private-bank` | No Ashcombe schema, client, or brand in this tree |
++| Group Headquarters | `iamtheoracle/vantoris-corporate` and `iamtheoracle/vantoriss` | No group authority over this ledger |
++
++## What is not a recovered record
++
++- The Hambros tribute is a public historical note with an explicit non-affiliation statement. It is not an X Money client or office.
++- Founder stories name Madam C. J. Walker, Sara Blakely, and James Dyson, with public source links. They are not Vantoris people. Colton Hogan and GGM were not in this source.
++- No live member register or statement file was in Git. Balances are not invented here.
++- This branch is not merged, not deployed, and not an operating payment service.
++
++## Ledger rule
++
++Posted balances remain sums of the existing `vantoris_ledger` journals. The schema name is historical. It does not grant Ashcombe, AVCU, Vantoris Private Institution, or Group Headquarters access to these rows.
+diff --git a/docs/SOURCE_IDENTITY_BOUNDARY.md b/docs/SOURCE_IDENTITY_BOUNDARY.md
+index facc7a2..5134f68 100644
+--- a/docs/SOURCE_IDENTITY_BOUNDARY.md
++++ b/docs/SOURCE_IDENTITY_BOUNDARY.md
+@@ -1,5 +1,9 @@
+ # Product identity and source boundary audit
+ 
++
++**Separation update — 18 November 2026.** Branch `work/xmoney-separated-source` corrects this tree to **Vantoris X Money**. The untouched snapshot remains `migration/remove-base44-and-codex` at `11ec54f9067db3e8c24bf4b026daf2062a7d5978`, where the package and visible brand said Vantoris Private Institution. That branch was not rewritten. Ashcombe Private Bank and AVCU are not this product. Migration filenames that still say `avcu` are preserved checksums, not permission to use an AVCU ledger.
++
++
+ **Branch inspected:** `migration/remove-base44-and-codex`  
+ **Repository containing this branch:** `iamtheoracle/vantoris-x-money`  
+ **Audit purpose:** preserve product identity and prevent accidental source, database or financial-authority crossover between Vantoris Private Institution (VPI), Vantoris X Money and AVCU.
+diff --git a/index.html b/index.html
+index c4c787e..5d2b217 100644
+--- a/index.html
++++ b/index.html
+@@ -10,13 +10,13 @@
+     <link rel="preconnect" href="https://fonts.googleapis.com" />
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
+-    <title>Vantoris Private Institution</title>
++    <title>Vantoris X Money</title>
+     <meta name="description" content="A U.S.-focused private investment platform bringing together client records, investment information, travel, property and dedicated support. Service availability is shown only when verified." />
+     <link rel="canonical" href="https://www.vantorispip.sbs" />
+-    <meta property="og:title" content="Vantoris Private Institution" />
++    <meta property="og:title" content="Vantoris X Money" />
+     <meta property="og:description" content="Trust · Structure · Purpose" />
+     <meta property="og:url" content="https://www.vantorispip.sbs" />
+-    <meta property="og:site_name" content="Vantoris Private Institution" />
++    <meta property="og:site_name" content="Vantoris X Money" />
+     <meta name="twitter:card" content="summary" />
+     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Crect width='120' height='120' rx='26' fill='%23071A2D'/%3E%3Cpath d='M18 88V56A42 42 0 0 1 102 56V88' fill='none' stroke='%23D4AF37' stroke-width='6' stroke-linecap='round'/%3E%3Cpath d='M18 86H102' fill='none' stroke='%23D4AF37' stroke-width='3'/%3E%3Cpath d='M10 96C22 86 34 106 46 96S70 86 82 96S106 106 114 96' fill='none' stroke='%23D4AF37' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M14 106C26 96 38 116 50 106S74 96 86 106S108 116 116 106' fill='none' stroke='%23D4AF37' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E" />
+     <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Crect width='120' height='120' rx='26' fill='%23071A2D'/%3E%3Cpath d='M18 88V56A42 42 0 0 1 102 56V88' fill='none' stroke='%23D4AF37' stroke-width='6' stroke-linecap='round'/%3E%3Cpath d='M18 86H102' fill='none' stroke='%23D4AF37' stroke-width='3'/%3E%3Cpath d='M10 96C22 86 34 106 46 96S70 86 82 96S106 106 114 96' fill='none' stroke='%23D4AF37' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M14 106C26 96 38 116 50 106S74 96 86 106S108 116 116 106' fill='none' stroke='%23D4AF37' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E" />
+diff --git a/package.json b/package.json
+index 5b4cc8c..27a6bb9 100644
+--- a/package.json
++++ b/package.json
+@@ -1,5 +1,5 @@
+ {
+-  "name": "vantoris-private-institution",
++  "name": "vantoris-x-money",
+   "private": true,
+   "version": "0.0.0",
+   "type": "module",
+@@ -11,7 +11,8 @@
+     "typecheck": "tsc -p ./jsconfig.json",
+     "preview": "vite preview",
+     "db:migrate:vantoris": "node scripts/apply-vantoris-migrations.mjs",
+-    "db:verify:vantoris": "node scripts/apply-vantoris-migrations.mjs --verify-only"
++    "db:verify:vantoris": "node scripts/apply-vantoris-migrations.mjs --verify-only",
++    "test:separation": "node --test tests/institution-separation.test.mjs"
+   },
+   "dependencies": {
+     "postgres": "^3.4.7",
+diff --git a/src/components/vantoris/HambrosTribute.jsx b/src/components/vantoris/HambrosTribute.jsx
+index 8a5f933..1fa2040 100644
+--- a/src/components/vantoris/HambrosTribute.jsx
++++ b/src/components/vantoris/HambrosTribute.jsx
+@@ -50,7 +50,7 @@ export default function HambrosTribute() {
+               <a href="https://atom.aim25.com/index.php/hambros-bank-limited?sf_culture=en" target="_blank" rel="noreferrer" className="font-semibold text-[#102638] underline decoration-[#B99B62] underline-offset-4">Explore the surviving bank records ↗</a>
+             </div>
+             <p className="mt-6 border-t border-[#B99B62]/35 pt-4 text-xs leading-relaxed text-slate-500">
+-              Vantoris Private Institution is focused on the United States. This London history corner is editorial remembrance only; it does not describe a Vantoris office, service area or business relationship in the United Kingdom.
++              This is not a Vantoris X Money record, client, office, or affiliation. The London history corner is editorial remembrance only and does not describe a Vantoris service, partnership, or business relationship.
+             </p>
+           </div>
+         </div>
+diff --git a/src/components/vantoris/MemberSidebar.jsx b/src/components/vantoris/MemberSidebar.jsx
+index f9aa0ed..870fd90 100644
+--- a/src/components/vantoris/MemberSidebar.jsx
++++ b/src/components/vantoris/MemberSidebar.jsx
+@@ -68,7 +68,7 @@ export default function MemberSidebar() {
+         <ShieldLogo size={40} theme="dark" variant="metallic" />
+         <div className="min-w-0">
+           <p className="truncate font-serif text-[19px] leading-tight tracking-wide text-[#14202B]">Vantoris</p>
+-          <p className="mt-1 text-[9px] font-semibold uppercase tracking-[0.2em] text-[#9A7841]">Private Institution</p>
++          <p className="mt-1 text-[9px] font-semibold uppercase tracking-[0.2em] text-[#9A7841]">X Money</p>
+         </div>
+       </div>
+ 
+@@ -108,7 +108,7 @@ export default function MemberSidebar() {
+ 
+       <div className="border-t border-[#E9E7E1] px-5 py-4">
+         <p className="text-[10px] font-medium uppercase tracking-[0.14em] text-[#14202B]/45">Private client workspace</p>
+-        <p className="mt-1 text-[10px] text-[#9AA1A7]">Vantoris Private Institution</p>
++        <p className="mt-1 text-[10px] text-[#9AA1A7]">Vantoris X Money</p>
+       </div>
+     </aside>
+   );
+diff --git a/src/components/vantoris/brand/VantorisLogo.jsx b/src/components/vantoris/brand/VantorisLogo.jsx
+index d65c0d3..2ff95b9 100644
+--- a/src/components/vantoris/brand/VantorisLogo.jsx
++++ b/src/components/vantoris/brand/VantorisLogo.jsx
+@@ -2,7 +2,7 @@ import React from 'react';
+ import VantorisMonogram from './VantorisMonogram';
+ 
+ /**
+- * Vantoris Private Institution logo lockups.
++ * Vantoris X Money logo lockups.
+  * layout: 'horizontal' | 'vertical' | 'standalone' | 'watermark' | 'stacked-mono'
+  */
+ /** @param {{ layout?: string, size?: number, variant?: string, theme?: string, color?: string, className?: string, showTagline?: boolean }} param0 */
+@@ -46,7 +46,7 @@ export default function VantorisLogo({
+         lineHeight: 1,
+       }}
+     >
+-      PRIVATE&nbsp;INSTITUTION&nbsp;·&nbsp;CAPITAL&nbsp;·&nbsp;TRUST
++      X&nbsp;MONEY&nbsp;·&nbsp;OWN&nbsp;LEDGER
+     </span>
+   );
+ 
+diff --git a/src/pages/BrandIdentity.jsx b/src/pages/BrandIdentity.jsx
+index 3194839..2c7351f 100644
+--- a/src/pages/BrandIdentity.jsx
++++ b/src/pages/BrandIdentity.jsx
+@@ -59,7 +59,7 @@ export default function BrandIdentity() {
+           <div className="relative z-10 flex flex-col items-center gap-6">
+             <VantorisLogo layout="vertical" size={88} variant="metallic" theme="dark" showTagline />
+             <p className="text-white/60 text-sm max-w-md leading-relaxed">
+-              A timeless brand identity for a world-class private institution —
++              A member identity for Vantoris X Money —
+               engineered with precision, restraint, and institutional confidence.
+             </p>
+           </div>
+@@ -237,7 +237,7 @@ export default function BrandIdentity() {
+         {/* Footer */}
+         <div className="text-center py-10">
+           <VantorisMonogram size={36} variant="flat" theme="light" className="mx-auto" />
+-          <p className="text-slate-400 text-xs mt-4 tracking-widest uppercase">Vantoris Private Institution · Brand Identity</p>
++          <p className="text-slate-400 text-xs mt-4 tracking-widest uppercase">Vantoris X Money · Brand Identity</p>
+           <p className="text-slate-300 text-[10px] mt-1">Trust · Structure · Purpose</p>
+         </div>
+       </div>
+diff --git a/src/pages/Discover.jsx b/src/pages/Discover.jsx
+index ad80ef5..3b1a35d 100644
+--- a/src/pages/Discover.jsx
++++ b/src/pages/Discover.jsx
+@@ -98,7 +98,7 @@ export default function Discover() {
+           <div className="absolute inset-0 bg-gradient-to-b from-navy/80 to-navy" />
+         </div>
+         <div className="relative">
+-          <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-brass">Vantoris Private Institution</p>
++          <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-brass">Vantoris X Money</p>
+           <h1 className="mt-1 font-heading text-2xl font-bold">Products & services</h1>
+           <p className="mt-2 max-w-xl text-sm leading-relaxed text-white/70">
+             Explore the connected client spaces. Each destination shows its current data, provider availability, and access requirements. Browsing this page does not activate a service or grant permissions.
+diff --git a/src/pages/DiscoverFlights.jsx b/src/pages/DiscoverFlights.jsx
+index 3b78792..30e1389 100644
+--- a/src/pages/DiscoverFlights.jsx
++++ b/src/pages/DiscoverFlights.jsx
+@@ -10,7 +10,7 @@ export default function DiscoverFlights() {
+           <ArrowLeft size={20} />
+         </Link>
+         <div className="min-w-0 flex-1">
+-          <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-400">Vantoris Private Institution</p>
++          <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-400">Vantoris X Money</p>
+           <h1 className="font-heading font-bold text-navy">Flight information</h1>
+           <p className="truncate text-[10px] font-mono text-slate-500">Licensed provider not connected</p>
+         </div>
+diff --git a/src/pages/DiscoverHousing.jsx b/src/pages/DiscoverHousing.jsx
+index 95bb27b..7a2a4dd 100644
+--- a/src/pages/DiscoverHousing.jsx
++++ b/src/pages/DiscoverHousing.jsx
+@@ -10,7 +10,7 @@ export default function DiscoverHousing() {
+           <ArrowLeft size={20} />
+         </Link>
+         <div>
+-          <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-400">Vantoris Private Institution</p>
++          <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-400">Vantoris X Money</p>
+           <h1 className="font-heading font-bold text-navy">Property discovery</h1>
+         </div>
+       </div>
+diff --git a/src/pages/Landing.jsx b/src/pages/Landing.jsx
+index ddd7a04..f5006b7 100644
+--- a/src/pages/Landing.jsx
++++ b/src/pages/Landing.jsx
+@@ -200,7 +200,7 @@ export default function Landing() {
+             <div className="leading-tight">
+               <p className="font-bold text-[15px] tracking-tight">Vantoris</p>
+               <p className="text-[10px] uppercase tracking-[0.14em] text-slate-500 hidden sm:block">
+-                Private institution · Impact
++                X Money · Member ledger
+               </p>
+             </div>
+           </button>
+@@ -463,7 +463,7 @@ export default function Landing() {
+               <div className="rounded-[24px] bg-navy text-white p-6 sm:p-8 relative overflow-hidden">
+                 <div className="absolute -right-10 -top-10 w-40 h-40 rounded-full bg-brass/20 blur-2xl" />
+                 <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-brass">Institutional seal</p>
+-                <p className="font-heading text-2xl font-bold mt-3">Vantoris Private Institution</p>
++                <p className="font-heading text-2xl font-bold mt-3">Vantoris X Money</p>
+                 <p className="text-white/60 text-sm mt-2 font-body">
+                   Trust · Structure · Purpose — navy, warm ivory, and brass with a discreet institutional character.
+                 </p>
+@@ -1031,11 +1031,11 @@ export default function Landing() {
+             </div>
+             <div>
+               <p className="font-bold text-navy text-sm">Vantoris</p>
+-              <p className="text-[11px] text-slate-500">Private institution · Vantoris ledger · Internal transfers</p>
++              <p className="text-[11px] text-slate-500">X Money · own ledger · Internal transfers</p>
+             </div>
+           </div>
+           <p className="text-[12px] text-slate-400 max-w-md">
+-            Vantoris Private Institution. Service availability, eligibility, and terms are shown within each workspace. This page does not claim deposit insurance, a third-party charter, custody or external payment-network access. Vantoris member balances and internal transfers are recorded in its own ledger.
++            Vantoris X Money. Service availability, eligibility, and terms are shown within each workspace. This page does not claim deposit insurance, a third-party charter, custody or external payment-network access. Vantoris member balances and internal transfers are recorded in its own ledger.
+           </p>
+         </div>
+       </footer>
+diff --git a/src/pages/admin/AdminMembers.jsx b/src/pages/admin/AdminMembers.jsx
+index 5fe7980..822bd0b 100644
+--- a/src/pages/admin/AdminMembers.jsx
++++ b/src/pages/admin/AdminMembers.jsx
+@@ -115,7 +115,7 @@ export default function AdminMembers() {
+     <div className="space-y-5">
+       <div className="flex flex-wrap items-end justify-between gap-3">
+         <div>
+-          <p className="text-xs uppercase tracking-[0.16em] text-brass">Vantoris Private Institution</p>
++          <p className="text-xs uppercase tracking-[0.16em] text-brass">Vantoris X Money</p>
+           <h1 className="mb-1 text-2xl font-bold text-white">Members</h1>
+           <p className="text-sm text-[#AAB4C3]">{loadError ? 'Member records unavailable' : members.length + ' member records returned · query limit 50'}</p>
+         </div>
+diff --git a/tests/institution-separation.test.mjs b/tests/institution-separation.test.mjs
+new file mode 100644
+index 0000000..8eeed7d
+--- /dev/null
++++ b/tests/institution-separation.test.mjs
+@@ -0,0 +1,48 @@
++import assert from "node:assert/strict";
++import { readFileSync } from "node:fs";
++import test from "node:test";
++
++const read = (path) => readFileSync(path, "utf8");
++
++test("package and document identity belong to X Money only", () => {
++  const pkg = JSON.parse(read("package.json"));
++  const html = read("index.html");
++  const readme = read("README.md");
++  assert.equal(pkg.name, "vantoris-x-money");
++  assert.match(html, /<title>Vantoris X Money<\/title>/);
++  assert.doesNotMatch(html, /Vantoris Private Institution|Ashcombe|American Vanguard/);
++  assert.match(readme, /^# Vantoris X Money/);
++  assert.match(readme, /not Ashcombe Private Bank/);
++});
++
++test("member brand does not adopt another institution", () => {
++  const landing = read("src/pages/Landing.jsx");
++  const logo = read("src/components/vantoris/brand/VantorisLogo.jsx");
++  const sidebar = read("src/components/vantoris/MemberSidebar.jsx");
++  assert.match(landing, /Vantoris X Money/);
++  assert.doesNotMatch(landing, /Ashcombe|American Vanguard|Vantoris Private Institution/);
++  assert.match(logo, /X&nbsp;MONEY/);
++  assert.doesNotMatch(logo, /PRIVATE&nbsp;INSTITUTION/);
++  assert.match(sidebar, /Vantoris X Money/);
++});
++
++test("Hambros tribute and founder stories are not institutional records", () => {
++  const tribute = read("src/components/vantoris/HambrosTribute.jsx");
++  const stories = read("src/components/vantoris/FounderStories.jsx");
++  assert.match(tribute, /makes no claim of succession, ownership, partnership, endorsement or affiliation/);
++  assert.match(tribute, /not a Vantoris X Money record/);
++  assert.match(stories, /Madam C\. J\. Walker/);
++  assert.doesNotMatch(stories, /Colton Hogan|GGM/);
++});
++
++test("ledger migrations are not an Ashcombe or shared-headquarters schema", () => {
++  const names = [
++    "migrations/001_avcu_payment_control_plane.sql",
++    "migrations/011_vantoris_approved_journal_posting.sql",
++    "migrations/024_vantoris_transfer_journal_visibility.sql",
++  ];
++  for (const name of names) {
++    const sql = read(name);
++    assert.doesNotMatch(sql, /ashcombe|headquarters|vantoris_private_institution/i);
++  }
++});
+diff --git a/tests/operational-truthfulness.test.ts b/tests/operational-truthfulness.test.ts
+index c3bca07..6418643 100644
+--- a/tests/operational-truthfulness.test.ts
++++ b/tests/operational-truthfulness.test.ts
+@@ -156,7 +156,7 @@ Deno.test("member bank transfer form only offers active accounts with verified U
+   assert(memberAuth.includes("memberStatus: rows[0].status"), "eligibility status must originate from the authenticated server-side member record");
+ });
+ 
+-Deno.test("public brand uses Vantoris Private Institution and the arch-over-river identity", async () => {
++Deno.test("public brand uses Vantoris X Money and keeps other institutions out", async () => {
+   const landing = await Deno.readTextFile("src/pages/Landing.jsx");
+   const logo = await Deno.readTextFile("src/components/vantoris/brand/VantorisLogo.jsx");
+   const mark = await Deno.readTextFile("src/components/vantoris/brand/VantorisMonogram.jsx");
+@@ -164,13 +164,16 @@ Deno.test("public brand uses Vantoris Private Institution and the arch-over-rive
+   const html = await Deno.readTextFile("index.html");
+   const brandIdentity = await Deno.readTextFile("src/pages/BrandIdentity.jsx");
+   const appIcon = await Deno.readTextFile("src/components/vantoris/brand/VantorisAppIcon.jsx");
+-  assert(landing.includes("Vantoris Private Institution"), "public landing page must use approved Vantoris identity");
+-  assert(logo.includes("VANTORIS") && logo.includes("PRIVATE&nbsp;INSTITUTION"), "wordmark must use Vantoris Private Institution identity");
++  assert(landing.includes("Vantoris X Money"), "public landing page must use the X Money identity");
++  assert(!landing.includes("Ashcombe") && !landing.includes("American Vanguard"), "landing must not adopt another institution");
++  assert(logo.includes("VANTORIS") && logo.includes("X&nbsp;MONEY"), "wordmark must use the X Money identity");
+   assert(mark.includes("ARCH_PATH") && mark.includes("RIVER_PATH"), "logo mark must use arch-over-river direction");
+-  assert(brandIdentity.includes("VANTORIS") && brandIdentity.includes("Vantoris Private Institution"), "brand identity page must use the approved institution name");
+-  assert(appIcon.includes("Vantoris app icon"), "app icon accessibility name must use the approved institution identity");
+-  assert(tribute.includes("Vantoris Private Institution is focused on the United States"), "Hambros tribute must remain an independent historical corner");
+-  assert(html.includes("Vantoris Private Institution") && !html.includes("Vantage Private Investment"), "document metadata must use Vantoris identity");
++  assert(brandIdentity.includes("VANTORIS") && brandIdentity.includes("Vantoris X Money"), "brand identity page must use the X Money name");
++  assert(appIcon.includes("Vantoris app icon"), "app icon accessibility name must use the approved product identity");
++  assert(tribute.includes("not a Vantoris X Money record"), "Hambros tribute must stay outside the X Money record");
++  assert(tribute.includes("no claim of succession") || tribute.includes("makes no claim of succession"), "Hambros tribute must deny affiliation");
++  assert(html.includes("Vantoris X Money") && !html.includes("Vantage Private Investment"), "document metadata must use the X Money identity");
++  assert(!html.includes("Vantoris Private Institution"), "document metadata must not use the private-institution label");
+ });
+ 
+ Deno.test("member QR screen clearly reports that QR payments are unavailable", async () => {
+-- 
+2.39.5
+
